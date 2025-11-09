@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Todo.AppHost/Todo.AppHost.csproj" Id="5620dc4d-d7a4-4f9e-87df-62559c3b67de" />
+  <Project Path="Todo.ServiceDefaults/Todo.ServiceDefaults.csproj" />
+  <Project Path="TodoApp.MVC/TodoApp.MVC.csproj" />
+</Solution>

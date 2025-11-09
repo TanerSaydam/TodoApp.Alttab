@@ -1,0 +1,52 @@
+﻿@using TodoApp.MVC.Models
+@model List<Todo>
+
+@{
+    ViewData["Title"] = "Home Page";
+    int index = 0;
+}
+
+<div class="text-center">
+    <h1 class="display-4">My Todo List</h1>
+    <a href="/Home/Add" class="btn btn-primary">Add</a>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>End Date</td>
+                <td>Is Completed?</td>
+                <td>Completed Date</td>
+                <td>Operations</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var todo in Model)
+            {
+                index++;
+                <tr>
+                    <td>@index</td>
+                    <td>@todo.Title</td>
+                    <td>@todo.Description</td>
+                    <td>@todo.EndDate.ToString("dd MMM yyyy HH:mm:ss")</td>
+                    <td>@(todo.IsCompleted ? "Completed" : "Waiting")</td>
+                    <td>@todo.CompletedDate?.ToString("dd MMM yyyy HH:mm:ss")</td>
+                    <td>
+                        <a href="#" class="btn btn-primary btn-sm">Update</a>
+                        <a onclick="deleteById('@todo.Id')" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <script>
+        function deleteById(id){
+            const res = confirm("You want to delete this record?");
+            if(res){
+                fetch("/Home/Delete?id=" + id).then(res => window.location.reload());
+            }
+        }
+    </script>
+</div>
